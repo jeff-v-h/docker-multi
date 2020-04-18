@@ -20,3 +20,16 @@ after_success:
   - docker push jeffvh/docker-multi-nginx
   - docker push jeffvh/docker-multi-server
   - docker push jeffvh/docker-multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: docker-multi-fibonacci
+  env: DockerMultiFibonacci-env
+  bucket_name: elasticbeanstalk-us-east-2-788408921554
+  bucket_path: docker-multi-fibonacci
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
